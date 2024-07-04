@@ -13,9 +13,15 @@
 
 # TODO:
 *  Admin credentials
-*  Versions
-*  Ruby
-*  Rails
-*  Postgresql
-*  Docker
 
+#  Versions
+** Ruby : 3.2.2
+** Gem : 3.4.10
+
+** Rails : 7.1.3
+> gem install bundler
+> gem install rails -v7.1
+> rails new community --name=Community --database=postgresql --minimal --skip-system-test --skip-test --skip-action-mailer --skip-action-mailbox 
+
+** Postgresql : 
+** Docker
