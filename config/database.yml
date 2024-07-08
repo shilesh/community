@@ -15,13 +15,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: localhost
+  database: "community"
+  username: postgres
+  password: Atlas16
+  port: 5432
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: community_development
+  # database: community_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -55,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: community_test
+  # database: community_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -79,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: community_production
-  username: community
-  password: <%= ENV["COMMUNITY_DATABASE_PASSWORD"] %>
+  # database: community_production
+  # username: community
+  # password: <%= ENV["COMMUNITY_DATABASE_PASSWORD"] %>

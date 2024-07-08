@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag 'member_index'%> 
+
+<p style="color: green"><%= notice %></p>
+<div>
+<div>
+<h1>Members</h1>
+</div>
+<div id="members">
+  <% @members.each do |member| %>
+    <div class="card">
+      <p>
+        <%= member.name%>
+      </p>
+      <p>
+        <%= member.mobile%>
+      </p>
+      <p>
+        <%= member.blood_group%>
+      </p>
+      <p>
+      <button class="btn">
+        <%= link_to "Show this member", member%>
+      </button>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<button class="btn1">
+<%= link_to "New member", new_member_path %>
+</button>
+</div>
+
