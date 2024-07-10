@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_052217) do
     t.string "blood_group"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["mobile"], name: "index_members_on_mobile", unique: true
   end
 
 end
