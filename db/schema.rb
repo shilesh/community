@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+# ActiveRecord::Schema[7.1].define(version: 2024_07_08_052217) do
+#   # These are extensions that must be enabled in order to support this database
+#   enable_extension "plpgsql"
 ActiveRecord::Schema[7.1].define(version: 2024_07_09_192746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "addresses", force: :cascade do |t|
     t.integer "member_id"
@@ -32,6 +37,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_192746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "family_members", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile"
+    t.string "blood_group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile"
+    t.string "blood_group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mobile"], name: "index_members_on_mobile", unique: true
+  end 
 
   create_table "locations", force: :cascade do |t|
     t.integer "member_id"

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :family_members
+  resources :members
   root 'pages#home'
   resources :admins
   resources :addresses

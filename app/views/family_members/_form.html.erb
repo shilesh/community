@@ -1,0 +1,26 @@
+<%= form_with(model: family_member) do |form| %>
+    <%= form.label :name, "Name"%>
+    <%= form.text_field :name %>
+
+    <%= form.label :mobile, "Mobile"%>
+    <%= form.text_field :mobile %>
+
+    <%= form.label :blood_group, "Blood Group"%>
+    <%= form.text_field :blood_group %>
+
+  <% if family_member.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(family_member.errors.count, "error") %> prohibited this family_member from being saved:</h2>
+
+      <ul>
+        <% family_member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

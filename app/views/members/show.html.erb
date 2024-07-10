@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+    <div style="border:2px solid blue; width:400px; padding-left:20px; border-radius:10px">
+      <p>
+        <%= @member.name%>
+      </p>
+      <p>
+        <%= @member.mobile%>
+      </p>
+      <p>
+        <%= @member.blood_group%>
+      </p>
+     
+    </div>
+
+<div style="margin-top:20px">
+  <button>
+   <%= link_to "Edit this member", edit_member_path(@member) %> 
+  </button>
+  <button>
+   <%= link_to "Back to members", members_path %>
+  </button>
+
+  <div style="margin-top:20px">
+  <%= button_to "Delete this member", @member, method: :delete %>
+  <div>
+</div>

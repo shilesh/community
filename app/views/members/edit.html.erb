@@ -1,0 +1,14 @@
+<h1>Editing member</h1>
+
+<%= render "form", member: @member %>
+
+<br>
+
+<div>
+  <button>
+   <%= link_to "Show this member", @member %> 
+  </button>
+  <button>
+   <%= link_to "Back to members", members_path %>
+  </button>
+</div>

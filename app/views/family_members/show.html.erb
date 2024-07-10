@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<div style="border:2px solid blue; width:400px; padding-left:20px; border-radius:10px">
+      <p>
+        <%= @family_member.name%>
+      </p>
+      <p>
+        <%= @family_member.mobile%>
+      </p>
+      <p>
+        <%= @family_member.blood_group%>
+      </p>
+     
+    </div>
+
+<div>
+  <%= link_to "Edit this family member", edit_family_member_path(@family_member) %> |
+  <%= link_to "Back to family members", family_members_path %>
+
+  <%= button_to "Destroy this family member", @family_member, method: :delete %>
+</div>
+
