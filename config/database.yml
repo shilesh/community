@@ -15,25 +15,21 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
-  database: "community"
-  username: postgres
-  password: Atlas16
-  port: 5432
+  host: 
+  database: 
+  username: 
+  password: 
+  port: 
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-<<<<<<< HEAD
-  # database: community_development
 
-=======
   database: community_development
   username: postgres
   password: password
->>>>>>> main
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
