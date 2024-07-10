@@ -15,21 +15,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: 
-  database: 
-  username: 
-  password: 
-  port: 
+
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
 
-  database: community_development
-  username: postgres
-  password: password
+  # database: community_development
+  # username: postgres
+  # password: password
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
@@ -42,7 +38,7 @@ development:
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  host: localhost
+  # host: localhost
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
@@ -86,12 +82,10 @@ test:
 #
 production:
   <<: *default
-<<<<<<< HEAD
   # database: community_production
   # username: community
   # password: <%= ENV["COMMUNITY_DATABASE_PASSWORD"] %>
-=======
-  database: community_production
-  username: community
-  password: password
->>>>>>> main
+
+  # database: community_production
+  # username: community
+  # password: password

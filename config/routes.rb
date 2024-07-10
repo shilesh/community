@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  root 'index_pages#index'
+  resources :index_pages
   resources :family_members
   resources :members
-  root 'pages#home'
   resources :admins
   resources :addresses
   resources :locations
