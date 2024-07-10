@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'index_pages#index'
-  resources :index_pages
+  root 'pages#home'
+  resources :pages
   resources :family_members
   resources :members
   resources :admins
