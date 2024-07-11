@@ -1,9 +1,86 @@
-<h1 style="color: white;Background-color:black;text-align:center; font-family: Arial, sans-serif">Scaffolding for Address, Location and Admin </h1>
-<h3 style="text-align:center;color:blue" >Click on the below Links to Create, Delete, Update and View</h3>
-<ul style="text-align: center;">
-  <li><%= link_to 'Admin', admins_path, style: "background-color: #993366;color: white;padding: 14px 25px;text-align: center;text-decoration: none;display: inline-block; font-weight: bold;  margin:8px" %></li>
-  <li><%= link_to 'Address', addresses_path, style: "background-color: #336699;color: white;padding: 14px 25px;text-align: center;text-decoration: none;display: inline-block; font-weight: bold; margin:8px" %></li>
-  <li><%= link_to 'Location', locations_path, style: "background-color: #f44336;color: white;padding: 14px 25px;text-align: center;text-decoration: none;display: inline-block; font-weight: bold; margin:8px" %></li>
-
-  </ul>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Community</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            box-sizing: border-box;
+        }
+        .login-container input[type="text"]::placeholder,
+        .login-container input[type="password"]::placeholder {
+            color: #aaa;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #5c67f2;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        .login-container button:hover {
+            background-color: #4b54c8;
+        }
+        .login-container .form-footer {
+            margin-top: 20px;
+            color: #777;
+        }
+        .login-container .form-footer a {
+            color: #5c67f2;
+            text-decoration: none;
+        }
+        .login-container .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+ 
+<div class="login-container">
+    <h2>Login to Community</h2>
+    <form>
+        <input type="text" name="user_name" placeholder="User Name" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div class="form-footer">
+        <p>Forgot your password? <a href="#">Click here</a></p>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+</div>
+ 
+</body>
+</html>
+ 

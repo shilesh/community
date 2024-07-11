@@ -86,12 +86,9 @@ test:
 #
 production:
   <<: *default
-<<<<<<< HEAD
   # database: community_production
   # username: community
   # password: <%= ENV["COMMUNITY_DATABASE_PASSWORD"] %>
-=======
   database: community_production
   username: community
   password: password
->>>>>>> main
