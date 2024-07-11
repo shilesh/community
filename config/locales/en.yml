@@ -28,4 +28,12 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  login:
+    title: "Login to Community"
+    user_name_placeholder: "User Name"
+    password_placeholder: "Password"
+    login_button: "Login"
+    forgot_password: "Forgot your password?"
+    click_here: "Click here"
+    dont_have_account: "Don't have an account?"
+    sign_up: "Sign up"

@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to Community</title>
+    <title><%= t('login.title')%></title>
     <%= stylesheet_link_tag "pages_home" %>
    
+    
 </head>
 <body>
  
 <div class="login-container">
-    <h2>Login to Community</h2>
+    <h2><%= t('login.title') %></h2>
     <form>
-        <input type="text" name="user_name" placeholder="User Name" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+
+    <%= text_field_tag :user_name, nil, placeholder: t('login.user_name_placeholder'), required: true %>
+    <%= password_field_tag :password, nil, placeholder: t('login.password_placeholder'), required: true %>
+ 
+        <button type="submit"><%= t('login.login_button')%></button>
     </form>
     <div class="form-footer">
-        <p>Forgot your password? <a href="#">Click here</a></p>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+        <p><%= t('login.forgot_password') %> <a href="#"><%= t('login.click_here') %></a></p>
+        <p><%= t('login.dont_have_account') %> <a href="#"><%= t('login.sign_up')%></a></p>
     </div>
 </div>
  
