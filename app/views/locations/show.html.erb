@@ -1,7 +1,9 @@
+<%= stylesheet_link_tag 'location_show', media: 'all' %>
 <p style="color: green"><%= notice %></p>
 
+<div style="border:2px solid; width:500px; padding-left:30px">
 <%= render @location %>
-
+</div>
 <div>
   <%= link_to "Edit this location", edit_location_path(@location) %> |
   <%= link_to "Back to locations", locations_path %>
