@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'member_index'%> 
 
+<button><%= link_to "Home", pages_path, class: "btn btn-primary" %></button>
+
 <p style="color: green"><%= notice %></p>
 <div>
 <div>
@@ -18,9 +20,9 @@
         <%= member.blood_group%>
       </p>
       <p>
-      <button class="btn">
-        <%= link_to "Show this member", member%>
-      </button>
+        <button class="btn">
+          <%= link_to "Show this member", member%>
+        </button>
       </p>
     </div>
   <% end %>

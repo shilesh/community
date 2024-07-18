@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+
+  root 'login#new'
+
   resources :pages
   resources :family_members
   resources :members
-  resources :admins
   resources :addresses
   resources :locations
+
+  devise_for :admins, skip: [:sessions]
+
+  as :admin do
+    get 'login', to: 'login#new', as: :new_login
+    post 'login', to: 'login#create', as: :login
+    delete 'logout', to: 'login#destroy', as: :logout
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
