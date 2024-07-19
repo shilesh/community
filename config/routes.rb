@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   resources :addresses
   resources :locations
 
-  devise_for :admins, skip: [:sessions]
-
   as :admin do
     get 'login', to: 'login#new', as: :new_login
     post 'login', to: 'login#create', as: :login
