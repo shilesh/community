@@ -13,7 +13,8 @@ class LoginController < ApplicationController
             redirect_to pages_path, notice: "Login Successfully"
             # render json: {token:token, user_id: session[:user_id]}
         else 
-            render :new, notice: "login failed"
+            redirect_to root_path, notice: "Invalid username or password"
+            # render :new, notice: "login failed"
         end 
     end 
 
@@ -24,8 +25,8 @@ class LoginController < ApplicationController
           session.destroy
           cookies.delete(:session_token)
           redirect_to root_path, notice: "Logged out successfully"
-        else
-          redirect_to root_path, notice: "Invalid session token"
+        # else
+        #   redirect_to root_path, notice: "Invalid session token"
         end
     end 
 
