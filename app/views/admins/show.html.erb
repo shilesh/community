@@ -1,7 +1,9 @@
+<%= stylesheet_link_tag 'admin_show', media: 'all' %>
 <p style="color: green"><%= notice %></p>
 
+<div style="border:2px solid; width:500px; padding-left:30px">
 <%= render @admin %>
-
+</div>
 <div>
   <%= link_to "Edit this admin", edit_admin_path(@admin) %> |
   <%= link_to "Back to admins", admins_path %>

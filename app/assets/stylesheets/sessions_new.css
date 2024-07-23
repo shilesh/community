@@ -1,3 +1,6 @@
+/* *{
+    align-items: center;
+}
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #e9ecef;
@@ -61,4 +64,4 @@ body {
 }
 .login-container .form-footer a:hover {
     text-decoration: underline;
-}
+} */
