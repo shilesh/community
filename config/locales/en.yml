@@ -37,3 +37,7 @@ en:
     click_here: "Click here"
     dont_have_account: "Don't have an account?"
     sign_up: "Sign up"
+
+    address:
+       new_address: "New Address"
+       back_to_addresses: "back to address"
