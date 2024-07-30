@@ -7,27 +7,18 @@ class LoginController < ApplicationController
 
         if user && user.authenticate(login_params[:password])
             
-            token = SecureRandom.hex()
-            session = Session.create(user_id: user.id, token:token)
-            cookies.signed[:session_token] = { value: token, httponly: true, secure: Rails.env.production? }
+            session[:user_id] = user.id
             redirect_to pages_path, notice: "Login Successfully"
-            # render json: {token:token, user_id: session[:user_id]}
         else 
             redirect_to root_path, notice: "Invalid username or password"
-            # render :new, notice: "login failed"
         end 
     end 
 
-    def destroy 
-        session = Session.find_by(token: cookies.signed[:session_token])
+    def destroy
 
-        if session
-          session.destroy
-          cookies.delete(:session_token)
-          redirect_to root_path, notice: "Logged out successfully"
-        # else
-        #   redirect_to root_path, notice: "Invalid session token"
-        end
+        session[:user_id] = nil
+        
+        redirect_to root_path, notice: "Logged out successfully"
     end 
 
     private
