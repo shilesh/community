@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new, :create]
 
   # GET /admins
   def index
@@ -25,7 +25,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(admin_params)
 
     if @admin.save
-      redirect_to @admin, notice: "Admin was successfully created."
+      redirect_to root_path, notice: "Admin was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

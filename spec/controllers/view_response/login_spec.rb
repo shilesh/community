@@ -17,7 +17,7 @@ RSpec.describe LoginController, type: :request do
         it {
             post login_url(:name => 'test', :password => '234')
 
-            expect(response).to redirect_to(root_url)
+            expect(response).to redirect_to(login_url)
             expect(flash[:notice]).to eq('Invalid username or password')
         }
     end 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'login#new'
+  root 'pages#home'
 
   resources :pages
   resources :family_members
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :addresses
   resources :locations
 
+  resources :admins  
 
   get 'login', to: 'login#new', as: :new_login
   post 'login', to: 'login#create', as: :login

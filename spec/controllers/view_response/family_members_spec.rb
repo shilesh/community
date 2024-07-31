@@ -8,7 +8,7 @@ RSpec.describe FamilyMembersController, type: :controller do
     end 
 
     it "return success response for show method" do 
-        fm1 = FamilyMember.create!(name:'test', mobile:'11', blood_group:'A')
+        fm1 = FamilyMember.create!(name:'test', mobile:'1184983238', blood_group:'A+')
         get :show, params:{id: fm1.id}
         
         expect(response).to be_successful
@@ -29,31 +29,31 @@ RSpec.describe FamilyMembersController, type: :controller do
     it "blood_group is not mandetory" do 
         fm3 = FamilyMember.new(name:'test', mobile:'11', blood_group:nil)
         get :index
-        expect(fm3).to be_valid
+        expect(fm3).to_not be_valid
     end 
 
     it "create successfully new family_member" do
-        fm = FamilyMember.create!(name:'test', mobile:'22', blood_group:'B')
+        fm = FamilyMember.create!(name:'test', mobile:'2793792732', blood_group:'B-')
 
         expect(response).to be_successful
     end 
 
     it "update successfully family_member" do 
-        fm3 = FamilyMember.create!(name: 'Test', mobile: '22', blood_group: 'A')
-        patch :update, params: { id: fm3.id, family_member: { name: 'ss' } }
+        fm3 = FamilyMember.create!(name: 'Test', mobile: '2983489282', blood_group: 'c-')
+        patch :update, params: { id: fm3.id, family_member: { name: 'sst' } }
         # expect(response).to be_valid
         expect(response).to redirect_to(fm3)
     end 
 
     it "failed to update family_member" do 
-        fm3 = FamilyMember.create!(name: 'Test', mobile: '22', blood_group: 'A')
+        fm3 = FamilyMember.create!(name: 'Test', mobile: '2987479322', blood_group: 'd-')
         patch :update, params: { id: fm3.id, family_member: { name: nil } }
         # expect(response).to be_valid
         expect(response).to have_http_status(:unprocessable_entity)
     end 
 
     it "delete family member successfully" do 
-        fm = FamilyMember.create!(name: 'Test', mobile: '22', blood_group: 'A')
+        fm = FamilyMember.create!(name: 'Test', mobile: '2984738732', blood_group: 'g-')
         delete :destroy, params:{id: fm.id}
 
         expect(response).to redirect_to(family_members_url)

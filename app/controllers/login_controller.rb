@@ -5,28 +5,26 @@ class LoginController < ApplicationController
     def create
         user =  Admin.find_by(name: login_params[:name])
 
-        if user && user.authenticate(login_params[:password])
+        respond_to do |format|
+            if user && user.authenticate(login_params[:password])
             
-            token = SecureRandom.hex()
-            session = Session.create(user_id: user.id, token:token)
-            cookies.signed[:session_token] = { value: token, httponly: true, secure: Rails.env.production? }
-            redirect_to pages_path, notice: "Login Successfully"
-            # render json: {token:token, user_id: session[:user_id]}
-        else 
-            redirect_to root_path, notice: "Invalid username or password"
-            # render :new, notice: "login failed"
-        end 
+                session[:user_id] = user.id
+                
+                format.html {redirect_to pages_path, notice: "Login Successfully"}
+                format.json  {render json: {message: "Login Successfully"}, status: :ok }
+            else 
+                format.html {redirect_to login_path, notice: "Invalid username or password"}
+                format.json  {render json: {message: "Invalid username or password"}, status: :unauthorized} 
+            end 
+        end
     end 
 
     def destroy 
-        session = Session.find_by(token: cookies.signed[:session_token])
+        session[:user_id] = nil
 
-        if session
-          session.destroy
-          cookies.delete(:session_token)
-          redirect_to root_path, notice: "Logged out successfully"
-        # else
-        #   redirect_to root_path, notice: "Invalid session token"
+        respond_to do |format|
+            format.html {redirect_to root_path, notice: "Logged out successfully"}
+            format.json  {render json: {message: "Logged out successfully"}} 
         end
     end 
 
