@@ -1,4 +1,4 @@
-class LoginsController < ApplicationController
+class PagesController < ApplicationController
  
    
     def new
