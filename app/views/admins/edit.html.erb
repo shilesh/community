@@ -1,10 +1,9 @@
-<h1>Editing admin</h1>
+<h1>Editing Profile</h1>
 
-<%= render "form", admin: @admin %>
+<%= render "edit-form", admin: @admin %>
 
 <br>
 
 <div>
-  <%= link_to "Show this admin", @admin %> |
-  <%= link_to "Back to admins", admins_path %>
+  <%= link_to "Change Password", edit_custom_admin_path %>
 </div>

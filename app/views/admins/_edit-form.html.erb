@@ -1,0 +1,18 @@
+<%= form_with(model: admin) do |form| %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :mobile, style: "display: block" %>
+    <%= form.text_field :mobile %>
+  </div>
+
+  <div>
+    <%= form.submit "Save" %>
+  </div>
+  
+<% end %>
+
