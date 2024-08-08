@@ -1,4 +1,6 @@
-<%= form_with url: changepass_admin_path(@admin), method: :patch, local: true do |form| %>
+<h1>Change Account Password</h1>
+
+<%= form_with url: change_password_admin_path(@admin), method: :patch, local: true do |form| %>
   
     <div>
       <%= form.label :old_password, "Old Password", style: "display: block" %>
@@ -11,7 +13,7 @@
     </div>  
 
     <div>
-      <%= form.submit %>
+      <%= form.submit "Change Password" %>
     </div>
     
 <% end %>

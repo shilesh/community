@@ -1,8 +1,11 @@
+<h1>My Profile</h1>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @current %>
 
 <div>
-  <%= link_to "Edit Profile", edit_admin_path(@current) %>
+  <%= link_to "Edit Profile", edit_admin_path(@current, form: :profile) %> |
+  <%= link_to "Change Password", edit_admin_path(@current, form: :password) %>
   <%= button_to "Delete Profile", @current, method: :delete %>
 </div>

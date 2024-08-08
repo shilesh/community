@@ -10,8 +10,7 @@ Rails.application.routes.draw do
 
   resources :admins do 
     member do
-      get 'edit_custom'
-      patch 'change_password', to: 'admins#change_password', as: :changepass
+      patch 'change_password', to: 'admins#change_password', as: :change_password
     end 
   end
   get 'profile', to: 'admins#show', as: :profile

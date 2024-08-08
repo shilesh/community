@@ -1,9 +1,5 @@
-<h1>Editing Profile</h1>
-
-<%= render "edit-form", admin: @admin %>
-
-<br>
-
-<div>
-  <%= link_to "Change Password", edit_custom_admin_path %>
-</div>
+<% if(@form == 'profile') %>
+  <%= render "edit-form", admin: @admin %>
+<% elsif(@form == 'password') %>
+  <%= render "edit-pass-form", admin: @admin %>
+<% end %>

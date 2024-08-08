@@ -1,11 +1,6 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: %i[ edit update destroy edit_custom change_password ]
+  before_action :set_admin, only: %i[ edit update destroy change_password ]
   before_action :authenticate_user!, except: [:new, :create]
-
-  # GET /admins
-  # def index
-  #   @admins = Admin.all
-  # end
 
   # GET /admins/1
   def show
@@ -19,10 +14,8 @@ class AdminsController < ApplicationController
 
   # GET /admins/1/edit
   def edit
+    @form = params[:form]
   end
-
-  def edit_custom
-  end 
 
   # POST /admins
   def create
@@ -50,7 +43,7 @@ class AdminsController < ApplicationController
       if @admin.save
         redirect_to @admin, notice: "Password changed succcessfully"
       else 
-        redirect_to edit_custom_admin_path(@admin), notice: "Password change failed, please try again"
+        redirect_to @admin, notice: "Password change failed, please try again"
       end
     else 
       redirect_to @admin, notice: "Failed, Must enter correct Password"
