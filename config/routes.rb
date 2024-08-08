@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'password_resets/new'
   resources :family_members
   resources :members
-  root 'logins#home'
+  root 'pages#home'
   resources :admins
   resources :addresses
   resources :locations
@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   get "sign_up" , to:"registrations#new"
   post "sign_up", to: "registrations#create"
 
-  get "sign_in" , to:"logins#home"
-  post "sign_in", to: "logins#create"
+  get "sign_in" , to:"pages#home"
+  post "sign_in", to: "pages#create"
 
-  delete "logout", to: "logins#destroy"
+  delete "logout", to: "pages#destroy"
 
   get "password", to: "passwords#edit" ,as: 'edit_password'
   patch "password", to: "passwords#update" , as: 'update_password'
