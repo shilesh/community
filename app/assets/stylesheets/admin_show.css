@@ -1,0 +1,81 @@
+body, h1, form, div, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Basic typography */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Notice paragraph */
+  p {
+    color: #000; /* Black text color */
+  }
+  
+  /* Admin card container */
+  .admin-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Admin details */
+  .admin-details {
+    margin-bottom: 20px;
+  }
+  
+  /* Admin actions */
+  .admin-actions {
+    text-align: right;
+  }
+  
+  /* Button base styles */
+  .button {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  /* Specific button background colors */
+  .edit-button {
+    background-color: #28a745; /* Green */
+  }
+  
+  .back-button {
+    background-color: #007bff; /* Blue */
+  }
+  
+  .destroy-button {
+    background-color: #dc3545; /* Red */
+  }
+  
+  /* Hover effects for specific buttons */
+  .edit-button:hover {
+    background-color: #218838; /* Darker green */
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  .destroy-button:hover {
+    background-color: #c82333; /* Darker red */
+  }
+  

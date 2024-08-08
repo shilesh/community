@@ -1,19 +1,89 @@
-*{
-    /* display:flex; */
-    align-items: center;
-    justify-content: center;
-}
-.card{
-    border: 2px solid blue;
-    width: 400px;
-    border-radius: 10px;
-    padding-left: 20px;
-    margin-top: 20px;
-}
-.btn{
-    text-decoration: none;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
 }
 
-.btn1{
-    margin-top: 30px;
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+#members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.btn,
+.btn1,
+button[type="submit"],
+.logout-button,
+.edit-password-button {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn {
+  background-color: white; /* Blue */
+  border: 2px solid black;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background-color: white;
+  transform: translateY(-3px);
+}
+
+.btn1 {
+  background-color: white;
+  border: 2px solid black;
+  margin-bottom: 10px;
+}
+
+.btn1:hover {
+  background-color: white;
+  transform: translateY(-3px);
+}
+
+.logout_btn,
+.edit_password_btn {
+  background-color: #000;
+  margin-bottom: 10px;
+}
+
+.logout_button:hover,
+.edit-password-button:hover {
+  background-color: #333;
+  transform: translateY(-3px);
 }

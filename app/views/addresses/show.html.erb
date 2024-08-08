@@ -1,10 +1,11 @@
+<%= stylesheet_link_tag 'address_show'%> 
 <p style="color: green"><%= notice %></p>
-
+<div style="border:2px solid; width:500px; padding-left:30px">
 <%= render @address %>
-
+</div>
 <div>
   <%= link_to "Edit this address", edit_address_path(@address) %> |
   <%= link_to "Back to addresses", addresses_path %>
 
-  <%= button_to "Destroy this address", @address, method: :delete %>
+  <%= button_to "Destroy this address", @address, method: :delete , class: 'destroy_btn'%>
 </div>

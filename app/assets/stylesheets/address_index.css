@@ -1,0 +1,39 @@
+p {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.address-item {
+  width: 500px;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+}
+
+#addresses p a {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#addresses p a:hover {
+  background-color: rgb(73, 73, 155);
+}
+
+.button {
+  border: 2px solid black;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: white;
+}

@@ -4,19 +4,35 @@ class AddressesController < ApplicationController
   # GET /addresses
   def index
     @addresses = Address.all
+    respond_to do |format|
+      format.html 
+      format.json { render json: @addresses }
+    end
   end
 
   # GET /addresses/1
   def show
+    respond_to do |format|
+      format.html 
+      format.json { render json: @address }
+    end
   end
 
   # GET /addresses/new
   def new
     @address = Address.new
+    respond_to do |format|
+      format.html 
+      format.json { render json: @address }
+    end
   end
 
   # GET /addresses/1/edit
   def edit
+    respond_to do |format|
+      format.html 
+      format.json { render json: @address }
+    end
   end
 
   # POST /addresses
@@ -24,25 +40,40 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
 
     if @address.save
-      redirect_to @address, notice: "Address was successfully created."
+      respond_to do |format|
+        format.html { redirect_to @address, notice: "Address was successfully created." }
+        format.json { render json: @address, status: :created, location: @address }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @address.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /addresses/1
   def update
     if @address.update(address_params)
-      redirect_to @address, notice: "Address was successfully updated.", status: :see_other
+      respond_to do |format|
+        format.html { redirect_to @address, notice: "Address was successfully updated." }
+        format.json { render json: @address, status: :ok }
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @address.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /addresses/1
   def destroy
-    @address.destroy!
-    redirect_to addresses_url, notice: "Address was successfully destroyed.", status: :see_other
+    @address.destroy
+    respond_to do |format|
+      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
