@@ -1,27 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to Community</title>
-    <%= stylesheet_link_tag "pages_home" %>
-   
-</head>
-<body>
- 
-<div class="login-container">
-    <h2>Login to Community</h2>
-    <form>
-        <input type="text" name="user_name" placeholder="User Name" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-    <div class="form-footer">
-        <p>Forgot your password? <a href="#">Click here</a></p>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
-    </div>
-</div>
- 
-</body>
-</html>
- 
+<h1>Welcome To Community</h1>
+
+
+<%= link_to "Login as admin", new_login_path %>
+<p style="color: green"><%= notice %></p>
+<div style="margin:30px"></div>
+
+<p>If you are new here please sign up to explore community</p>
+<%= link_to "Sign up", new_admin_path %>
+<div style="margin:30px"></div>

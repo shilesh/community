@@ -5,11 +5,21 @@ class FamilyMembersController < ApplicationController
   # GET /family_members
   def index
     @family_members = FamilyMember.all
+
+    respond_to do |format|
+      format.html 
+      format.json  {render json: @family_members.as_json(only: [:id, :name, :mobile, :blood_group])}
+    end
   end
 
   # GET /family_members/1
   def show
     @family_member = FamilyMember.find(params[:id])
+
+    respond_to do |format|
+      format.html 
+      format.json  {render json: @family_member.as_json(only: [:id, :name, :mobile, :blood_group])}
+    end
   end
 
   # GET /family_members/new
@@ -19,32 +29,48 @@ class FamilyMembersController < ApplicationController
 
   # GET /family_members/1/edit
   def edit
+    respond_to do |format|
+      format.html 
+      format.json  {render json: @family_member.as_json(only: [:id, :name, :mobile, :blood_group])}
+    end
   end
 
   # POST /family_members
   def create
     @family_member = FamilyMember.new(family_member_params)
 
-    if @family_member.save
-      redirect_to @family_member, notice: "Family member was successfully created."
-    else
-      render :new, status: :unprocessable_entity
-    end
+    respond_to do |format|
+      if @family_member.save
+        format.html {redirect_to @family_member, notice: "Family member was successfully created."}
+        format.json  {render json: @family_member} 
+      else
+        format.html {render action: "new", status: :unprocessable_entity}
+        format.json  {render json:@family_member.errors, status: :unprocessable_entity}
+      end
+    end 
   end
 
   # PATCH/PUT /family_members/1
   def update
-    if @family_member.update(family_member_params)
-      redirect_to @family_member, notice: "Family member was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
+
+    respond_to do |format|
+      if @family_member.update(family_member_params)
+        format.html {redirect_to @family_member, notice: "Family member was successfully updated.", status: :see_other}
+        format.json  {render json: @family_member.as_json(only: [:id, :name, :mobile, :blood_group])} 
+      else
+        format.html {render action: "edit", status: :unprocessable_entity}
+        format.json  {render json:@family_member.errors, status: :unprocessable_entity}
+      end
     end
   end
 
   # DELETE /family_members/1
   def destroy
-    @family_member.destroy!
-    redirect_to family_members_url, notice: "Family member was successfully destroyed.", status: :see_other
+    respond_to do |format|
+      @family_member.destroy!
+      format.html {redirect_to family_members_url, notice: "Family member was successfully destroyed.", status: :see_other}
+      format.json  {render json: {message: "Family member was successfully destroyed"}}
+    end
   end
 
   private
