@@ -1,43 +1,40 @@
 require 'rails_helper'
 
-RSpec.describe LocationsController, type: :controller do
-  let(:valid_attributes) do
-    { member_id: 4, lat: 40.7128, lng: -74.0060 }
+RSpec.describe AdminsController, type: :controller do
+  let(:attributes) do
+    { name: "Admin Name", mobile: "1234567890", password_digest: "password_digest" }
   end
 
   describe "GET #index" do
-    let!(:location) { Location.create!(valid_attributes) } 
-
     it "returns a success response with HTML format" do
+      Admin.create!(attributes)
       get :index
       expect(response).to be_successful
     end
 
     it "returns a success response with JSON format" do
+      Admin.create!(attributes)
       get :index, format: :json
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
-      json_response = JSON.parse(response.body)
-      expect(json_response).to be_an(Array)
-      expect(json_response.first['member_id']).to eq(valid_attributes[:member_id])
     end
   end
 
   describe "GET #show" do
-    let!(:location) { Location.create!(valid_attributes) }
-
     it "returns a success response with HTML format" do
-      get :show, params: { id: location.id }
+      admin = Admin.create!(attributes)
+      get :show, params: { id: admin.id }
       expect(response).to be_successful
     end
 
     it "returns a success response with JSON format" do
-      get :show, params: { id: location.id }, format: :json
+      admin = Admin.create!(attributes)
+      get :show, params: { id: admin.id }, format: :json
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
       json_response = JSON.parse(response.body)
-      expect(json_response['id']).to eq(location.id)
-      expect(json_response['member_id']).to eq(location.member_id)
+      expect(json_response['id']).to eq(admin.id)
+      expect(json_response['name']).to eq(admin.name)
     end
   end
 
@@ -52,44 +49,43 @@ RSpec.describe LocationsController, type: :controller do
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
       json_response = JSON.parse(response.body)
-      expect(json_response).to include('member_id', 'lat', 'lng')
+      expect(json_response['name']).to be_nil
     end
   end
 
   describe "GET #edit" do
-    let!(:location) { Location.create!(valid_attributes) }
-
     it "returns a success response with HTML format" do
-      get :edit, params: { id: location.id }
+      admin = Admin.create!(attributes)
+      get :edit, params: { id: admin.id }
       expect(response).to be_successful
     end
 
     it "returns a success response with JSON format" do
-      get :edit, params: { id: location.id }, format: :json
+      admin = Admin.create!(attributes)
+      get :edit, params: { id: admin.id }, format: :json
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
-      json_response = JSON.parse(response.body)
-      expect(json_response['id']).to eq(location.id)
     end
   end
 
   describe "POST #create" do
-    it "creates a new Location and returns a success response with JSON format" do
-      post :create, params: { location: valid_attributes }, format: :json
+    it "creates a new Admin and returns JSON response" do
+      post :create, params: { admin: attributes }, format: :json
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
       json_response = JSON.parse(response.body)
-      expect(json_response['member_id']).to eq(valid_attributes[:member_id])
+      expect(json_response['name']).to eq("Admin Name")
     end
   end
 
   describe "DELETE #destroy" do
-    let!(:location) { Location.create!(valid_attributes) }
-
-    it "destroys the requested location and returns no content response" do
-      delete :destroy, params: { id: location.id }, format: :json
+    it "destroys the requested admin and returns no content response" do
+      admin = Admin.create!(attributes)
+      delete :destroy, params: { id: admin.id }, format: :json
       expect(response).to have_http_status(:no_content)
       expect(response.body).to be_empty
     end
   end
 end
+
+
