@@ -1,0 +1,40 @@
+div:first-child p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+div:first-child {
+  border: 2px solid blue;
+  width: 400px;
+  padding-left: 20px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+}
+
+button {
+  background-color: white;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+button[type="submit"] {
+  background-color: black;
+}
+
+button:hover {
+  background-color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #f44336;
+}

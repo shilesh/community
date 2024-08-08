@@ -1,6 +1,7 @@
+<%= stylesheet_link_tag 'admin_index', media: 'all' %>
 <p style="color: green"><%= notice %></p>
 
-<h1>Admins</h1>
+<h2>Admins</h2>
 
 <div id="admins">
   <% @admins.each do |admin| %>
@@ -12,5 +13,6 @@
     </p>
   <% end %>
 </div>
+
 
 <%= link_to "New admin", new_admin_path %>

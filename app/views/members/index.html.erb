@@ -27,7 +27,17 @@
 </div>
 
 <button class="btn1">
-<%= link_to "New member", new_member_path %>
+<%= link_to "Add New member", new_member_path %>
 </button>
+</div>
+
+<div style="display: flex; flex-direction: column;">
+  <div>
+    <%= button_to "Logout", logout_path, method: :delete , class: 'logout_btn' %>
+  </div>
+
+  <div>
+    <%= button_to "Edit Password", edit_password_path, method: :get, class: 'edit_password_btn' %>
+  </div>
 </div>
 
