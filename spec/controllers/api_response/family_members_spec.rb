@@ -15,6 +15,7 @@ RSpec.describe FamilyMembersController, type: :controller do
         get :show, params:{id: fm.id}, :format => :json
 
         expect(response.status).to be(200)
+        expect(response.body).to include("5664924748")
         expect(response.content_type).to eq("application/json; charset=utf-8")
     end
 
@@ -37,7 +38,7 @@ RSpec.describe FamilyMembersController, type: :controller do
     
             expect(response).to have_http_status(:unprocessable_entity) 
             expect(response.content_type).to eq("application/json; charset=utf-8")
-          end
+        end
     end
 
 
@@ -46,6 +47,7 @@ RSpec.describe FamilyMembersController, type: :controller do
         patch :update, params: { id: fm.id, family_member: { name: 'sst' } }, :format => :json
        
         expect(response.status).to be(200)
+        expect(response.body).to include("sst")
         expect(response.content_type).to eq("application/json; charset=utf-8")
     end
     

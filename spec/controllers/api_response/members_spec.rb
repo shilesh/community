@@ -15,6 +15,7 @@ RSpec.describe MembersController, type: :controller do
         get :show, params:{id: member.id}, :format => :json
 
         expect(response.status).to be(200)
+        expect(response.body).to include("5664924748")
         expect(response.content_type).to eq("application/json; charset=utf-8")
     end
 
@@ -30,7 +31,7 @@ RSpec.describe MembersController, type: :controller do
     end
 
     context "with invalid attributes" do
-        let(:invalid_attributes) { { name: 'Te', mobile: '123', blood_group: 'invalid' } }
+        let(:invalid_attributes) { { name: 'Te', mobile: '123', blood_group: '' } }
 
         it "failed to create action in application/json response" do
             post :create, params: { member: invalid_attributes }, :format => :json
@@ -38,8 +39,7 @@ RSpec.describe MembersController, type: :controller do
             expect(response).to have_http_status(:unprocessable_entity) 
             expect(response.content_type).to eq("application/json; charset=utf-8")
         end
-    end
-    
+    end 
 
     it "update member in application/json format successfully" do
         member = Member.create!(name: 'Test5', mobile: '5694549248', blood_group: 'A-')
@@ -47,6 +47,7 @@ RSpec.describe MembersController, type: :controller do
        
         # expect(response).to redirect_to(member)
         expect(response.status).to be(200)
+        expect(response.body).to include("5694549248")
         expect(response.content_type).to eq("application/json; charset=utf-8")
     end
     
@@ -61,7 +62,7 @@ RSpec.describe MembersController, type: :controller do
           expect(response).to have_http_status(:unprocessable_entity) 
           expect(response.content_type).to eq("application/json; charset=utf-8")
         end
-      end
+    end
 
     it "delete member successfully" do
         member = Member.create!(name: 'Test6', mobile: '5698348348', blood_group: 'hg+')

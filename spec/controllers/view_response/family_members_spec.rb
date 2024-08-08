@@ -41,14 +41,14 @@ RSpec.describe FamilyMembersController, type: :controller do
     it "update successfully family_member" do 
         fm3 = FamilyMember.create!(name: 'Test', mobile: '2983489282', blood_group: 'c-')
         patch :update, params: { id: fm3.id, family_member: { name: 'sst' } }
-        # expect(response).to be_valid
+        
         expect(response).to redirect_to(fm3)
     end 
 
     it "failed to update family_member" do 
         fm3 = FamilyMember.create!(name: 'Test', mobile: '2987479322', blood_group: 'd-')
         patch :update, params: { id: fm3.id, family_member: { name: nil } }
-        # expect(response).to be_valid
+        
         expect(response).to have_http_status(:unprocessable_entity)
     end 
 
