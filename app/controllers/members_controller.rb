@@ -5,8 +5,7 @@ class MembersController < ApplicationController
   # GET /members
   def index
     @members = Member.all
-    # render json: @members, only: [:id ,:name, :mobile, :blood_group]
-
+  
     respond_to do |format|
       format.html 
       format.json  {render json: @members.as_json(only: [:id, :name, :mobile, :blood_group])}

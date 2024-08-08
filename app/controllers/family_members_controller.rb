@@ -18,7 +18,7 @@ class FamilyMembersController < ApplicationController
 
     respond_to do |format|
       format.html 
-      format.json  {render json: @family_members.as_json(only: [:id, :name, :mobile, :blood_group])}
+      format.json  {render json: @family_member.as_json(only: [:id, :name, :mobile, :blood_group])}
     end
   end
 
@@ -31,7 +31,7 @@ class FamilyMembersController < ApplicationController
   def edit
     respond_to do |format|
       format.html 
-      format.json  {render json: @family_members.as_json(only: [:id, :name, :mobile, :blood_group])}
+      format.json  {render json: @family_member.as_json(only: [:id, :name, :mobile, :blood_group])}
     end
   end
 
@@ -56,7 +56,7 @@ class FamilyMembersController < ApplicationController
     respond_to do |format|
       if @family_member.update(family_member_params)
         format.html {redirect_to @family_member, notice: "Family member was successfully updated.", status: :see_other}
-        format.json  {render json: @family_member} 
+        format.json  {render json: @family_member.as_json(only: [:id, :name, :mobile, :blood_group])} 
       else
         format.html {render action: "edit", status: :unprocessable_entity}
         format.json  {render json:@family_member.errors, status: :unprocessable_entity}

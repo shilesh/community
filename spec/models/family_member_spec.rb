@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe FamilyMember, :type => :model do
 
     it "name must be present to be valid" do
-        fm1 = FamilyMember.new(name:'abc', mobile:'123', blood_group:'A')
+        fm1 = FamilyMember.new(name:'abc', mobile:'1238934934', blood_group:'A-')
         expect(fm1).to be_valid
     end 
 
@@ -14,7 +14,7 @@ RSpec.describe FamilyMember, :type => :model do
 
 
     it "mobile must be present to be valid" do
-        fm1 = FamilyMember.new(name:'abc', mobile:'123', blood_group:'A')
+        fm1 = FamilyMember.new(name:'abc', mobile:'1238934934', blood_group:'A-')
         expect(fm1).to be_valid
     end 
 
@@ -25,13 +25,13 @@ RSpec.describe FamilyMember, :type => :model do
 
 
     it "blood_group must be present to be valid" do
-        fm1 = FamilyMember.new(name:'abc', mobile:'123', blood_group:'A')
+        fm1 = FamilyMember.new(name:'abc', mobile:'1238934934', blood_group:'A-')
         expect(fm1).to be_valid
     end 
 
     it "blood_group did not to be present to be valid" do
-        fm1 = FamilyMember.new(name:'abc', mobile:'123', blood_group:nil)
-        expect(fm1).to be_valid
+        fm1 = FamilyMember.new(name:'abc', mobile:'1238934934', blood_group:nil)
+        expect(fm1).to_not be_valid
     end 
 
 end 

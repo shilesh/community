@@ -32,7 +32,6 @@ RSpec.describe MembersController, type: :controller do
         member = Member.create!(name: 'Test', mobile: '5682334893', blood_group: 'A+')
         post :create
 
-        # expect(response.status).to be(200)
         expect(response.content_type).to eq("text/html; charset=utf-8")
     end 
 
@@ -75,7 +74,7 @@ RSpec.describe MembersController, type: :controller do
     it "update member success" do
         member = Member.create!(name: 'Test', mobile: '5783473468', blood_group: 'f+')
         patch :update, params: { id: member.id, member: { name: 'sds' } }
-        # expect(response).to be_valid
+        
         expect(response).to redirect_to(member)
     end
 
@@ -91,7 +90,6 @@ RSpec.describe MembersController, type: :controller do
         member = Member.create!(name: 'Test', mobile: '5689430234', blood_group: 'g+')
         patch :update, params: { id: member.id, member: { name: nil } }
     
-        # expect(response).to render_template(:edit)
         expect(response).to have_http_status(:unprocessable_entity)
     end
 
