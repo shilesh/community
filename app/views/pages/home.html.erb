@@ -1,6 +1,4 @@
-
- 
-<div class="login-container">
+ <div class="login-container">
     <h2>Login to Community</h2>
     <form>
         <input type="text" name="user_name" placeholder="User Name" required>
@@ -8,8 +6,8 @@
         <button type="submit">Login</button>
     </form>
     <div class="form-footer">
-        <p>Forgot your password? <a href="#">Click here</a></p>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+        <p><%= t('login.forgot_password') %> <a href="#"><%= t('login.click_here') %></a></p>
+        <p><%= t('login.dont_have_account') %> <a href="#"><%= t('login.sign_up')%></a></p>
     </div>
 </div>
  
