@@ -22,6 +22,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
+group :test do
+  gem "rspec-core"
+end
+ 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
