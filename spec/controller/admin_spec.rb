@@ -16,7 +16,8 @@ RSpec.describe AdminsController, type: :controller do
       Admin.create!(attributes)
       get :index, format: :json
       expect(response).to be_successful
-      expect(response.content_type.split(';').first).to eq("application/json")
+      expect(response.body).to include("Admin Name")  
+       expect(response.content_type.split(';').first).to eq("application/json")
     end
   end
 
@@ -35,6 +36,7 @@ RSpec.describe AdminsController, type: :controller do
       json_response = JSON.parse(response.body)
       expect(json_response['id']).to eq(admin.id)
       expect(json_response['name']).to eq(admin.name)
+      expect(response.body).to include("Admin Name")
     end
   end
 
@@ -65,6 +67,7 @@ RSpec.describe AdminsController, type: :controller do
       get :edit, params: { id: admin.id }, format: :json
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
+      expect(response.body).to include("Admin Name")
     end
   end
 
