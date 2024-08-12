@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :admins  
 
+
   get 'login', to: 'login#new', as: :new_login
   post 'login', to: 'login#create', as: :login
   delete 'logout', to: 'login#destroy', as: :logout

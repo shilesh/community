@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :set_member, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  
+
   # GET /members
   def index
     @members = Member.all
