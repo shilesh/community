@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2024_07_15_053025) do
+=======
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_180024) do
+>>>>>>> f2ff079d6680d0a418a2d63a9ab8998875ef42f0
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,11 +63,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_053025) do
     t.index ["mobile"], name: "index_members_on_mobile", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "password_digest"
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_sessions_on_token", unique: true
   end
 
 end

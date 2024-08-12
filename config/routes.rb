@@ -1,29 +1,19 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
+
+
+  root 'login#new'
+
+  resources :pages
   resources :family_members
   resources :members
-  root 'logins#home'
-  resources :admins
   resources :addresses
   resources :locations
 
-  
-  get "sign_up" , to:"registrations#new"
-  post "sign_up", to: "registrations#create"
 
-  get "sign_in" , to:"logins#home"
-  post "sign_in", to: "logins#create"
+  get 'login', to: 'login#new', as: :new_login
+  post 'login', to: 'login#create', as: :login
+  delete 'logout', to: 'login#destroy', as: :logout
 
-  delete "logout", to: "logins#destroy"
-
-  get "password", to: "passwords#edit" ,as: 'edit_password'
-  patch "password", to: "passwords#update" , as: 'update_password'
-
-
-  get "password/reset", to: "password_resets#new"
-  post "password/reset", to: "password_resets#create"
-
-  
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
