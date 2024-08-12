@@ -1,0 +1,21 @@
+<%= form_with url: logout_path, method: :delete do %>
+    <%= submit_tag 'Logout' %>
+<% end %>
+
+<h1>Commmunity</h1>
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "Members", members_path %>
+<div style="margin:30px"></div>
+
+<%= link_to "Family members", family_members_path %>
+<div style="margin:30px"></div>
+
+<%= link_to "Addresess", addresses_path %>
+<div style="margin:30px"></div>
+
+<%= link_to "Locations", locations_path %>
+<div style="margin:30px"></div>
+
+
+
