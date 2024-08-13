@@ -1,10 +1,11 @@
+<h1>My Profile</h1>
+
 <p style="color: green"><%= notice %></p>
 
-<%= render @admin %>
+<%= render @current %>
 
 <div>
-  <%= link_to "Edit this admin", edit_admin_path(@admin) %> |
-  <%= link_to "Back to admins", admins_path %>
-
-  <%= button_to "Destroy this admin", @admin, method: :delete %>
+  <%= link_to "Edit Profile", edit_admin_path(@current, form: :profile) %> |
+  <%= link_to "Change Password", edit_admin_path(@current, form: :password) %>
+  <%= button_to "Delete Profile", @current, method: :delete %>
 </div>

@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   resources :addresses
   resources :locations
 
-  resources :admins  
+  resources :admins do 
+    member do
+      patch 'change_password', to: 'admins#change_password', as: :change_password
+    end 
+  end
+  get 'profile', to: 'admins#show', as: :profile
 
 
   get 'login', to: 'login#new', as: :new_login
