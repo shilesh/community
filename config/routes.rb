@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+
   root 'pages#home'
 
   resources :pages
   resources :family_members
   resources :members
+  resources :admins
   resources :addresses
   resources :locations
 
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   get 'login', to: 'login#new', as: :new_login
   post 'login', to: 'login#create', as: :login
   delete 'logout', to: 'login#destroy', as: :logout
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

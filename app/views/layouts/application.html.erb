@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application" %>
-  </head>
-
+    
+    <%= stylesheet_link_tag "application", media: 'all' %>
+  
   <body>
     <%= render "layouts/header" unless current_page?(login_path) || current_page?(root_path) || current_page?(new_admin_path)%>
 
     <%= yield %>
+    <% if current_page?(root_path) %>
+  <% else %>
+    <%= render partial:"templates/footer_application"%>
+  <% end %>
   </body>
 </html>
+

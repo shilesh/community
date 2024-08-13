@@ -1,0 +1,26 @@
+<h1>Edit Password</h1>
+
+<%= form_with model: Current.user, url: edit_password_path do |form| %>
+  <% if form.object.errors.any? %>
+  <div>
+  <% form.object.errors.full_messages.each do |messages|%>
+    <% end %>
+  </div>
+  <% end %>
+
+
+  <div>
+   <%= form.label :password%>
+  <%= form.password_field :password , placeholder: "Password" %>
+  </div>
+
+  <div>
+   <%= form.label :Confirm_Password%>
+  <%= form.password_field :password_confirmation , placeholder: "Confirm Password" %>
+  </div>
+
+  <div>
+  <%= form.submit "Update Password" %>
+  </div>
+  
+<% end %>
