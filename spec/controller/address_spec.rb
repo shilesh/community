@@ -15,6 +15,7 @@ RSpec.describe AddressesController, type: :controller do
       Address.create!(attributes)
       get :index, format: :json
       expect(response).to be_successful
+      expect(response.body).to include("bangalore, sanjaynagar")  
       expect(response.content_type.split(';').first).to eq("application/json")
     end
   end
@@ -34,6 +35,7 @@ RSpec.describe AddressesController, type: :controller do
       json_response = JSON.parse(response.body)
       expect(json_response['id']).to eq(address.id)
       expect(json_response['member_id']).to eq(address.member_id)
+      expect(response.body).to include("bangalore, sanjaynagar") 
     end
   end
 
@@ -49,6 +51,7 @@ RSpec.describe AddressesController, type: :controller do
       get :edit, params: { id: address.id }, format: :json
       expect(response).to be_successful
       expect(response.content_type.split(';').first).to eq("application/json")
+      expect(response.body).to include("bangalore, sanjaynagar") 
     end
   end
 

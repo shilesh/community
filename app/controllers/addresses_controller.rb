@@ -43,7 +43,7 @@ class AddressesController < ApplicationController
     if @address.save
       respond_to do |format|
         format.html { redirect_to @address, notice: "Address was successfully created." }
-        format.json { render json: @address, status: :created, location: @address }
+        format.json { render json: @address, status: :created}
       end
     else
       respond_to do |format|
