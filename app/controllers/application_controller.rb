@@ -1,15 +1,19 @@
 class ApplicationController < ActionController::Base
-     
-    before_action :set_current_user
 
-    def set_current_user
-        if session[:user_id]
-          Current.user = User.find_by(id: session[:user_id])
-        end
+    protect_from_forgery with: :exception
+
+    def current_user
+      if session[:user_id]
+        @current_user ||= Admin.find(session[:user_id])
       end
-
-
-    def require_user_logged_in!
-        redirect_to sign_in_path, notice: "You must be signed in to do that." if Current.user.nil?
+    end
+  
+    helper_method :current_user
+  
+    def authenticate_user!
+      unless current_user
+        redirect_to new_login_path, notice: "Please log in"
+      end
     end
 end
+
