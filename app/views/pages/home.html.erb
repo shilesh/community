@@ -1,27 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to Community</title>
-    <%= stylesheet_link_tag "pages_home" %>
-   
-</head>
-<body>
- 
+<%= stylesheet_link_tag "logins_home"%>
+
+<p class="notice"><%= notice %></p>
+
+<p class="alert"><%= alert %></p>
 <div class="login-container">
-    <h2>Login to Community</h2>
-    <form>
-        <input type="text" name="user_name" placeholder="User Name" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-    <div class="form-footer">
-        <p>Forgot your password? <a href="#">Click here</a></p>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+
+
+  <h2>Login to Community</h1>
+
+   <%= form_with url: sign_in_path do |form| %>
+
+  <div>
+  <%= form.text_field :email , placeholder: "Username"%>
+  </div>
+
+  <div>
+  <%= form.password_field :password , placeholder: "Password" %>
+  </div>
+
+  <div>
+  <button type="submit"><%= t('login.login_button')%></button>
+  </div>
+<% end %>
+<div class="form-footer">
+        <p><%= t('login.forgot_password') %> <a href="password/reset"><%= t('login.click_here') %></a></p>
+        <p><%= t('login.dont_have_account') %> <a href="sign_up"><%= t('login.sign_up')%></a></p>
     </div>
 </div>
- 
-</body>
-</html>
- 
+
+
+
+
+
+
+
+

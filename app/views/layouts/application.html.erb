@@ -6,11 +6,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
-    <%= stylesheet_link_tag "application"%>
+    <%= stylesheet_link_tag "application", media: 'all' %>
   
   <body>
-  <%= render "layouts/header" unless current_page?(root_path) %>
-
+  <% if current_page?(root_path) %>
+  <% else %>
+    <%= render partial:"templates/header_application"%>
+  <% end %>
     <%= yield %>
+    <% if current_page?(root_path) %>
+  <% else %>
+    <%= render partial:"templates/footer_application"%>
+  <% end %>
   </body>
 </html>
+
