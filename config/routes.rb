@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
 
 
-  root 'login#new'
+  root 'pages#home'
 
   resources :pages
   resources :family_members
   resources :members
-  root 'pages#home'
   resources :admins
   resources :addresses
   resources :locations
+
+  resources :admins do 
+    member do
+      patch 'change_password', to: 'admins#change_password', as: :change_password
+    end 
+  end
+  get 'profile', to: 'admins#show', as: :profile
 
 
   get 'login', to: 'login#new', as: :new_login

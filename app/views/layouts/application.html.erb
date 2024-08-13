@@ -9,10 +9,8 @@
     <%= stylesheet_link_tag "application", media: 'all' %>
   
   <body>
-  <% if current_page?(root_path) %>
-  <% else %>
-    <%= render partial:"templates/header_application"%>
-  <% end %>
+    <%= render "layouts/header" unless current_page?(login_path) || current_page?(root_path) || current_page?(new_admin_path)%>
+
     <%= yield %>
     <% if current_page?(root_path) %>
   <% else %>

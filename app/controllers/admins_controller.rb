@@ -1,22 +1,11 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
 
-  # GET /admins
-  def index
-    @admins = Admin.all
-    respond_to do |format|
-      format.html 
-      format.json { render json: @admins }
-    end
-  end
+  before_action :set_admin, only: %i[ edit update destroy change_password ]
+  before_action :authenticate_user!, except: [:new, :create]
 
   # GET /admins/1
   def show
-    respond_to do |format|
-      format.html 
-      format.json { render json: @admin }
-    end
+    @current = Admin.find("#{session[:user_id]}")
   end
 
   # GET /admins/new
@@ -30,10 +19,7 @@ class AdminsController < ApplicationController
 
   # GET /admins/1/edit
   def edit
-    respond_to do |format|
-      format.html 
-      format.json { render json: @admin }
-    end
+    @form = params[:form]
   end
 
   # POST /admins
@@ -68,6 +54,19 @@ class AdminsController < ApplicationController
     end
   end
 
+  def change_password
+    if @admin.authenticate(params[:old_password])
+        @admin.password = params[:new_password]
+      if @admin.save
+        redirect_to @admin, notice: "Password changed succcessfully"
+      else 
+        redirect_to @admin, notice: "Password change failed, please try again"
+      end
+    else 
+      redirect_to @admin, notice: "Failed, Must enter correct Password"
+    end 
+  end  
+
   # DELETE /admins/1
   def destroy
     @admin.destroy
@@ -85,7 +84,7 @@ class AdminsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admin_params
-      params.require(:admin).permit(:name, :mobile, :password, :password_digest)
+      params.require(:admin).permit(:name, :mobile, :password)
     end
 end
 
