@@ -6,6 +6,10 @@ class AdminsController < ApplicationController
   # GET /admins/1
   def show
     @current = Admin.find("#{session[:user_id]}")
+    respond_to do |format|
+      format.html 
+      format.json { render json: @admin }
+    end
   end
 
   # GET /admins/new
