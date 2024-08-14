@@ -28,7 +28,7 @@ class AdminsController < ApplicationController
 
     if @admin.save
       respond_to do |format|
-        format.html { redirect_to @admin, notice: "Admin was successfully created." }
+        format.html { redirect_to root_path, notice: "Admin was successfully created." }
         format.json { render json: @admin, status: :created, location: @admin }
       end
     else
@@ -71,7 +71,7 @@ class AdminsController < ApplicationController
   def destroy
     @admin.destroy
     respond_to do |format|
-      format.html { redirect_to admins_url, notice: "Admin was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Account deleted successfully." }
       format.json { head :no_content }
     end
   end
