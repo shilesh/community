@@ -5,7 +5,12 @@ class AdminsController < ApplicationController
 
   # GET /admins/1
   def show
-    @current = Admin.find("#{session[:user_id]}")
+    # @current = Admin.find("#{session[:user_id]}")
+    @admin = Admin.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @admin }
+    end
   end
 
   # GET /admins/new
@@ -28,7 +33,7 @@ class AdminsController < ApplicationController
 
     if @admin.save
       respond_to do |format|
-        format.html { redirect_to @admin, notice: "Admin was successfully created." }
+        format.html { redirect_to root_path, notice: "Admin was successfully created." }
         format.json { render json: @admin, status: :created, location: @admin }
       end
     else
@@ -71,7 +76,7 @@ class AdminsController < ApplicationController
   def destroy
     @admin.destroy
     respond_to do |format|
-      format.html { redirect_to admins_url, notice: "Admin was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Admin was successfully destroyed." }
       format.json { head :no_content }
     end
   end

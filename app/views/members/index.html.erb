@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag 'member_index'%>
 
 <p style="color: green"><%= notice %></p>
 <div>
@@ -31,13 +30,4 @@
 </button>
 </div>
 
-<div style="display: flex; flex-direction: column;">
-  <div>
-    <%= button_to "Logout", logout_path, method: :delete , class: 'logout_btn' %>
-  </div>
-
-  <div>
-    <%= button_to "Edit Password", edit_password_path, method: :get, class: 'edit_password_btn' %>
-  </div>
-</div>
 
