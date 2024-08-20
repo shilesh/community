@@ -89,6 +89,7 @@ GEM
       orm_adapter (~> 0.1)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
+    docile (1.4.1)
     drb (2.2.1)
     erubi (1.13.0)
     globalid (1.2.1)
@@ -186,9 +187,6 @@ GEM
       psych (>= 4.0.0)
     reline (0.5.9)
       io-console (~> 0.5)
-    responders (3.1.1)
-      actionpack (>= 5.2)
-      railties (>= 5.2)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.1)
@@ -206,6 +204,12 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -242,6 +246,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-core
   rspec-rails
+  simplecov
   sprockets-rails
   tzinfo-data
 
