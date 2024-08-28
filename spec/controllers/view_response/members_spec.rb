@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
 
+    before do 
+        admin = Admin.create!(name:'test', mobile:'123', password:'123')
+        session[:user_id] = admin.id
+    end
+    
     it "returns a success response" do
         get :index
         expect(response).to be_successful
@@ -26,6 +31,20 @@ RSpec.describe MembersController, type: :controller do
         member = Member.create!(name: 'Test', mobile: '5687943274', blood_group: 'A+')
         get :show, params:{id: member.id}
         expect(response).to be_successful
+    end
+
+    it "GET new action" do
+      get :new
+
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to eq("text/html; charset=utf-8")
+    end
+
+    it "GET edit action" do
+      member = Member.create!(name: 'Test', mobile: '5696334893', blood_group: 'A+')
+      get :edit, params: { id: member.id }
+
+      expect(response).to have_http_status(:ok)
     end
 
     it "create action in text/html response" do

@@ -5,6 +5,11 @@ RSpec.describe AddressesController, type: :controller do
     { member_id: 4, permanent: true, communication: false, permanent_zip: 'bangalore, sanjaynagar', communication_zip: 'Bangalore' }
   end
 
+  before do 
+    admin = Admin.create!(name:'test', mobile:'123', password:'123')
+    session[:user_id] = admin.id
+  end
+
   describe "GET #index" do
     it "returns a success response with HTML format" do
       get :index
