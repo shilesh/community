@@ -5,6 +5,11 @@ RSpec.describe LocationsController, type: :controller do
     { member_id: 4, lat: 40.7128, lng: -74.0060 }
   end
 
+  before do 
+    admin = Admin.create!(name:'test', mobile:'123', password:'123')
+    session[:user_id] = admin.id
+  end
+
   describe "GET #index" do
     let!(:location) { Location.create!(valid_attributes) } 
 
