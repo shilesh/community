@@ -27,6 +27,10 @@ gem 'rails-controller-testing'
 # SimpleCov gem is a code coverage analysis tool for Ruby
 gem 'simplecov'
 
+gem 'pronto'
+gem 'pronto-rubocop', require: false
+gem 'pronto-flay', require: false
+gem 'rugged', '~> 1.7', '>= 1.7.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
