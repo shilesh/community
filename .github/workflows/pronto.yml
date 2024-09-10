@@ -32,7 +32,7 @@ jobs:
         run: bin/rails assets:precompile
 
       - name: Run Pronto
-        run: bundle exec pronto run -c origin/main
+        run: bundle exec pronto run -c main
 
       # - run: |
       #     git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
