@@ -8,23 +8,14 @@ RSpec.describe AdminsController, type: :controller do
     session[:user_id] = admin.id
   end
 
-  # describe "GET #show" do
-  #   it "returns a success response in JSON" do
-  #     get :show, params: { id: admin.id }, format: :json
-
-  #     expect(response).to have_http_status(:ok)
-  #     expect(response.content_type).to eq("application/json; charset=utf-8")
-  #     expect(response.body).to include("5551234567")
-  #   end
-  # end
 
   describe "GET #show" do
     it "returns a success response in JSON" do
       get :show, params: { id: admin.id }
 
       expect(response).to have_http_status(:ok)
-      # expect(response.content_type).to eq("application/json; charset=utf-8")
       expect(response.body).to include("123")
+      expect(response.content_type).to eq("text/html; charset=utf-8")
     end
   end
 

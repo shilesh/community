@@ -4,6 +4,7 @@ RSpec.describe LocationsController, type: :controller do
   let(:valid_attributes) do
     { member_id: 4, lat: 40.7128, lng: -74.0060 }
   end
+  let(:invalid_attributes) { { member_id: nil, lat: nil, lng: nil } }
 
   before do 
     admin = Admin.create!(name:'test', mobile:'123', password:'123')
@@ -95,6 +96,29 @@ RSpec.describe LocationsController, type: :controller do
       delete :destroy, params: { id: location.id }, format: :json
       expect(response).to have_http_status(:no_content)
       expect(response.body).to be_empty
+    end
+  end
+
+  # describe "PATCH/PUT #update" do
+  context "with valid attributes" do
+    it "updates the admin and returns a success response in JSON" do
+      location = Location.create!(valid_attributes)
+      patch :update, params: { id: location.id, location: valid_attributes }, format: :json
+
+
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to eq("application/json; charset=utf-8")
+    end
+  end
+
+  context "with invalid attributes" do
+
+    it "fails to update the admin and returns unprocessable_entity response in JSON" do
+      location = Location.create!(valid_attributes)
+      patch :update, params: { id: location.id, location: invalid_attributes }, format: :json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.content_type).to eq("application/json; charset=utf-8")
     end
   end
 end
