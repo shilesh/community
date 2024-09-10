@@ -15,15 +15,34 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: |
-          git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
-      - name: Setup Ruby
+
+      - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
-      - name: Setup pronto
-        run: gem install pronto pronto-rubocop
+        with:
+          bundler-cache: true
+          ruby-version: 3.2.2  # specify the Ruby version if needed
+
+      - name: Update apt-get
+        run: sudo apt-get update
+
+      - name: Install additional dependencies
+        run: sudo apt-get install -y nodejs yarn
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile
+
       - name: Run Pronto
-        # run: pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
         run: bundle exec pronto run --verbose
-        # env:
-        #   PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-        #   PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+
+      # - run: |
+      #     git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
+      # - name: Setup Ruby
+      #   uses: ruby/setup-ruby@v1
+      # - name: Setup pronto
+      #   run: gem install pronto pronto-rubocop
+      # - name: Run Pronto
+      #   # run: pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
+      #   run: bundle exec pronto run --verbose
+      #   # env:
+      #   #   PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+      #   #   PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
