@@ -1,29 +1,28 @@
-name: Ruby on Rails
-
+name: Pronto
 on:
   push:
     branches:
-      - pronto_workflow
+      - '**'  # Match all branches
   pull_request:
     branches:
-      - pronto_workflow
+      - '**'  # Match all branches
 
 jobs:
-  build:
+  pronto:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.2
-        bundler-cache: true
-
-    - name: Install dependencies
-      run: bundle install
-
-    - name: Run Pronto
-      run: bundle exec pronto run
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - run: |
+          git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Setup pronto
+        run: gem install pronto pronto-rubocop
+      - name: Run Pronto
+        run: pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
+        env:
+          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
