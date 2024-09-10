@@ -1,0 +1,3 @@
+default:
+  # Base branch to compare against, set this to 'main' instead of 'master'
+  base: 'main'
