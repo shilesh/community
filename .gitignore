@@ -36,7 +36,7 @@
 
 
 # Ignore database.yml
-/config/database.yml
+# /config/database.yml
 
 # Ignore coverage directory
 /coverage

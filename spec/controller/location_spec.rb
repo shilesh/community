@@ -6,7 +6,11 @@ RSpec.describe LocationsController, type: :controller do
   end
   let(:invalid_attributes) { { member_id: nil, lat: nil, lng: nil } }
 
-  
+  before do 
+    admin = Admin.create!(name:'test', mobile:'123', password:'123')
+    session[:user_id] = admin.id
+  end
+
   describe "GET #index" do
     let!(:location) { Location.create!(valid_attributes) } 
 

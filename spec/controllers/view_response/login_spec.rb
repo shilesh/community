@@ -20,6 +20,13 @@ RSpec.describe LoginController, type: :request do
             expect(flash[:notice]).to eq('Invalid username or password')
         end
     end 
+        
+    it "successfully logged out" do
+        delete logout_url()
 
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq('Logged out successfully')
+    end
+ 
 end 
 

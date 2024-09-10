@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe FamilyMembersController, type: :controller do
 
+    before do 
+        admin = Admin.create!(name:'test', mobile:'123', password:'123')
+        session[:user_id] = admin.id
+    end
+    
     it "returns a success for index action in json response" do
         get :index, :format => :json
 
@@ -16,6 +21,14 @@ RSpec.describe FamilyMembersController, type: :controller do
 
         expect(response.status).to be(200)
         expect(response.body).to include("5664924748")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
+    end
+
+    it "GET edit action" do
+        fm = FamilyMember.create!(name: 'Test', mobile: '5696334893', blood_group: 'A+')
+        get :edit, params: { id: fm.id }, :format => :json
+  
+        expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq("application/json; charset=utf-8")
     end
 

@@ -4,14 +4,17 @@ RSpec.describe AdminsController, type: :controller do
   let(:admin) { Admin.create!(name: 'Test Admin', mobile: '5551234567', password: 'securepassword') }
 
   before do 
-    session[:user_id]=admin.id
-  end 
+    admin = Admin.create!(name:'test', mobile:'123', password:'123')
+    session[:user_id] = admin.id
+  end
+
 
   describe "GET #show" do
     it "returns a success response in JSON" do
       get :show, params: { id: admin.id }
 
       expect(response).to have_http_status(:ok)
+      expect(response.body).to include("123")
       expect(response.content_type).to eq("text/html; charset=utf-8")
     end
   end

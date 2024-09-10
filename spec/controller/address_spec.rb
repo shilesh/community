@@ -7,7 +7,12 @@ RSpec.describe AddressesController, type: :controller do
   let(:valid_attributes) { { member_id: 4, permanent: true, communication: false, permanent_zip: 'bangalore, sanjaynagar', communication_zip: 'Bangalore' } }
   let(:invalid_attributes) { { member_id: nil, permanent: nil, communication: nil, permanent_zip: '', communication_zip: '' } }
 
-  context "GET #index" do
+  before do 
+    admin = Admin.create!(name:'test', mobile:'123', password:'123')
+    session[:user_id] = admin.id
+  end
+
+  describe "GET #index" do
     it "returns a success response with HTML format" do
       get :index
       expect(response).to be_successful
