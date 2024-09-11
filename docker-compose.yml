@@ -1,0 +1,30 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    network_mode: "host" 
+    environment:
+      DATABASE_HOST: localhost
+      DATABASE_NAME: db_name
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+    command: ./bin/rails server -b 0.0.0.0
+    volumes:
+      - .:/rails
+
+  db:
+    image: postgres:14
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_name
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+
+
