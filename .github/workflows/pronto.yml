@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Pronto
         run: |
-          bundle exec pronto run -f github_status github_pr -c origin/main
+          bundle exec pronto run -f github_status github_pr -c main
 
       # - run: |
       #     git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
