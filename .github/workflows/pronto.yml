@@ -31,8 +31,12 @@ jobs:
       - name: Precompile assets
         run: bin/rails assets:precompile
 
-      # - name: Run Pronto
-      #   run: bundle exec pronto run -c origin/main
+      - name: Setup pronto
+        run: gem install pronto pronto-rubocop
+
+      - name: Run Pronto
+        run: |
+          bundle exec pronto run -c origin/main
 
       # - run: |
       #     git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
