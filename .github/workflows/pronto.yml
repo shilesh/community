@@ -36,7 +36,8 @@ jobs:
 
       - name: Run Pronto
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
         run: |
           git fetch --prune --unshallow
           bundle exec pronto run -f github_status github_pr -c origin/main
