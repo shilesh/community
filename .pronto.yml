@@ -1,6 +1,4 @@
 all:
   exclude:
-    - vendor/** # Exclude the vendor directory
-
-default:
-  base: 'main' # Set the base branch to main
+    - 'vendor/**' # Exclude the vendor directory
+base: main
