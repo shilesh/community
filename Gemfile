@@ -37,15 +37,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
 
-  # Ruby static code analyzer
-  gem "rubocop", ">= 1.15.0", require: false, group: :pronto
-  gem 'rubocop-performance', ">= 1.11.0", require: false, group: :pronto
-  gem 'rubocop-rails', '>= 2.11.0', require: false, group: :pronto
-  gem 'rubocop-rake', '>= 0.5.1', require: false, group: :pronto
-
-  # Mainly for being run in GH Action
-  gem "pronto", require: false, group: :pronto
-  gem "pronto-rubocop", require: false, group: :pronto
+  gem 'pronto'
+  gem 'pronto-rubocop', require: false
+  gem 'pronto-flay', require: false
 end
 
 group :test do
