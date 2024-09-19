@@ -35,8 +35,9 @@ jobs:
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PRONTO_CONFIG=.pronto.yml bundle exec pronto run -f github_status github_pr -c origin/main
+          bundle exec pronto run -f github_status github_pr -c origin/main
           
+      #PRONTO_CONFIG=.pronto.yml bundle exec pronto run -f github_status github_pr -c origin/main
       # - name: Run Pronto
       #   env:
       #     PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
