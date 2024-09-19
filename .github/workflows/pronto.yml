@@ -10,32 +10,66 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history to ensure branches are available
 
-      - name: Install Ruby and gems
+      # Step 2: Set up Ruby environment
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
-          ruby-version: 3.2.2  # specify the Ruby version if needed
+          ruby-version: '3.2.0'  # Specify your Ruby version here
+          bundler-cache: true    # Cache gems automatically
+      
+      # Step 3: Fetch all branches (if needed)
+      - name: Fetch all branches
+        run: |
+          git fetch origin +refs/heads/*:refs/remotes/origin/*
 
-      - name: Update apt-get
-        run: sudo apt-get update
+      # Step 4: Install gems
+      - name: Install Gems
+        run: |
+          bundle install --jobs 4 --retry 3
 
-      - name: Install additional dependencies
-        run: sudo apt-get install -y nodejs yarn
-
-      - name: Precompile assets
-        run: bin/rails assets:precompile
-
-      - name: Setup pronto
-        run: gem install pronto pronto-rubocop
-
+      # Step 5: Run Pronto
       - name: Run Pronto
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bundle exec pronto run -f github_status github_pr -c origin/main
+
+
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
+
+      # - name: Install Ruby and gems
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     bundler-cache: true
+      #     ruby-version: 3.2.2  # specify the Ruby version if needed
+
+      # - name: Update apt-get
+      #   run: sudo apt-get update
+
+      # - name: Install additional dependencies
+      #   run: sudo apt-get install -y nodejs yarn
+
+      # - name: Precompile assets
+      #   run: bin/rails assets:precompile
+
+      # - name: Setup pronto
+      #   run: gem install pronto pronto-rubocop
+
+      # - name: Run Pronto
+      #   env:
+      #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     bundle exec pronto run -f github_status github_pr -c origin/main
+
+
+
           
       #PRONTO_CONFIG=.pronto.yml bundle exec pronto run -f github_status github_pr -c origin/main
       # - name: Run Pronto
