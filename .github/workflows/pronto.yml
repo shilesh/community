@@ -26,7 +26,7 @@ jobs:
       # Step 3: Fetch all branches (if needed)
       - name: Fetch all branches
         run: |
-          git fetch origin +refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/pull/*
+          git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
 
       # Step 4: Install gems
       - name: Install Gems
@@ -36,9 +36,10 @@ jobs:
       # Step 5: Run Pronto
       - name: Run Pronto
         env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
+          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
         run: |
-          bundle exec pronto run -f github_status github_pr -c origin/main
+          bundle exec pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
 
 
       # - name: Checkout code
