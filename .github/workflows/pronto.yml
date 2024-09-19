@@ -8,8 +8,6 @@ jobs:
   pronto:
 
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       # Step 1: Checkout the repository
@@ -38,60 +36,6 @@ jobs:
       # Step 5: Run Pronto
       - name: Run Pronto
         env:
-          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+          GITHUB_ACCESS_TOKEN: ${{ secrets.MY_GITHUB_PAT }}
         run: |
-          bundle exec pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
-
-
-      # - name: Checkout code
-      #   uses: actions/checkout@v2
-
-      # - name: Install Ruby and gems
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     bundler-cache: true
-      #     ruby-version: 3.2.2  # specify the Ruby version if needed
-
-      # - name: Update apt-get
-      #   run: sudo apt-get update
-
-      # - name: Install additional dependencies
-      #   run: sudo apt-get install -y nodejs yarn
-
-      # - name: Precompile assets
-      #   run: bin/rails assets:precompile
-
-      # - name: Setup pronto
-      #   run: gem install pronto pronto-rubocop
-
-      # - name: Run Pronto
-      #   env:
-      #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     bundle exec pronto run -f github_status github_pr -c origin/main
-
-
-
-          
-      #PRONTO_CONFIG=.pronto.yml bundle exec pronto run -f github_status github_pr -c origin/main
-      # - name: Run Pronto
-      #   env:
-      #     PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-      #     PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
-      #   run: |
-      #     git fetch --prune --unshallow
-      #     bundle exec pronto run -f github_status github_pr -c origin/main
-
-      # - run: |
-      #     git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
-      # - name: Setup Ruby
-      #   uses: ruby/setup-ruby@v1
-      # - name: Setup pronto
-      #   run: gem install pronto pronto-rubocop
-      # - name: Run Pronto
-      #   # run: pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
-      #   run: bundle exec pronto run --verbose
-      #   # env:
-      #   #   PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-      #   #   PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
+          bundle exec pronto run -c origin/${{ github.base_ref }}
