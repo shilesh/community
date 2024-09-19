@@ -26,7 +26,7 @@ jobs:
       # Step 3: Fetch all branches (if needed)
       - name: Fetch all branches
         run: |
-          git fetch origin +refs/heads/*:refs/remotes/origin/*
+          git fetch origin +refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/pull/*
 
       # Step 4: Install gems
       - name: Install Gems
