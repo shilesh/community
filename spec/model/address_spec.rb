@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  subject { Address.new(member_id: 4, permanent: true, communication:false ,permanent_zip: 'bangalore, sanjaynagar',communication_zip: 'Bangalore') }
+  let(:member) { Member.create!(name: "John Doe", mobile: "9400988067") }
+  subject { Address.new(member_id: member.id, permanent: true, communication:false ,permanent_zip: 'bangalore, sanjaynagar',communication_zip: 'Bangalore') }
 
   describe 'Validations' do
     
     it 'is valid with valid attributes' do
+      subject.member_id = member.id
       expect(subject).to be_valid
     end
 

@@ -1,58 +1,33 @@
-# syntax = docker/dockerfile:1
+# Use the official Ruby image as the base image
+FROM ruby:3.2.2
 
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.2
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
-
-# Rails app lives here
-WORKDIR /rails
-
-# Set production environment
-ENV RAILS_ENV="production" \
-    BUNDLE_DEPLOYMENT="1" \
-    BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+# Install dependencies
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
 
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+ENV BUNDLE_PATH /bundle_cache
 
-# Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config
+# Create and set the working directory
+WORKDIR /app
 
-# Install application gems
+# Add Gemfile and Gemfile.lock before other files
+# Leverage Docker layer caching for bundle install
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
-# Copy application code
+# Precompile assets
+# TODO :  not required ...
+# RUN bundle exec rake assets:precompile
+
+# Install the gems specified in the Gemfile
+RUN gem install bundler -v 2.5.14 && bundle install --jobs 20 --retry 5
+
+RUN bundle install
+
+# Copy the rest of the application code
 COPY . .
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
-
-
-# Final stage for app image
-FROM base
-
-# Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
-# Copy built artifacts: gems, application
-COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rails /rails
-
-# Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log tmp
-USER rails:rails
-
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-# Start the server by default, this can be overwritten at runtime
+# Expose port 3000 to the Docker host
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+
+# Specify the command to run when the container starts
+CMD ["rails", "server", "-b", "0.0.0.0"]
