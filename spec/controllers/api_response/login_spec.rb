@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe LoginController, type: :request do
+RSpec.describe LoginController, type: :controller do
 
     context "login successfully" do
-    before {Admin.create!(name:'test', mobile:'123', password:'123')}
+    before {Admin.create!(name:'test', mobile:'1231239876', password:'123')}
         it do
-            post login_url(:name => 'test', :password => '123'), as: :json
-            
+            post :create, params: { :name => 'test', :password => '123' }, :format => :json
+
             expect(response).to have_http_status(200)
             json_response = JSON.parse(response.body)
             expect(json_response["message"]).to eq("Login Successfully")
@@ -15,7 +15,7 @@ RSpec.describe LoginController, type: :request do
 
     context "login failed" do
         it do
-            post login_url(:name => 'test', :password => '234'), as: :json
+            post :create, params: { :name => 'test', :password => '1234' }, as: :json
 
             expect(response).to have_http_status(:unauthorized)
             json_response = JSON.parse(response.body)

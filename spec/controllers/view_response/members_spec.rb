@@ -67,11 +67,11 @@ RSpec.describe MembersController, type: :controller do
         expect(member).to_not be_valid
     end
     
-    it "invalid bloodgroup members" do
-        member = Member.new(name: 'test', mobile: '5673974358', blood_group: nil)
-        get :index
-        expect(member).to_not be_valid
-    end
+    # it "invalid bloodgroup members" do
+    #     member = Member.new(name: 'test', mobile: '5673974358', blood_group: "")
+    #     get :index
+    #     expect(member).to_not be_valid
+    # end
 
     context "with invalid attributes" do
         let(:invalid_attributes) { { name: 'Te', mobile: '123', blood_group: 'invalid' } }

@@ -1,0 +1,53 @@
+
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_DB: community_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - '5434:5432'
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0' -p 3000"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ".:/app"
+      - ~/.ssh:/root/.ssh:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      POSTGRES_DB: community_development
+
+  rspec:
+    build: .
+    command: bundle exec rspec
+    volumes:
+      - ".:/app"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: test
+      POSTGRES_DB: community_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+  bundle-cache:

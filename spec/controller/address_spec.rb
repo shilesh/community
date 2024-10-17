@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe AddressesController, type: :controller do
+
+  let(:member) { Member.create!(name: "John Doe", mobile: "9400988067") }
   let(:attributes) do
-    { member_id: 4, permanent: true, communication: false, permanent_zip: 'bangalore, sanjaynagar', communication_zip: 'Bangalore' }
+    {member_id: member.id, permanent: 'bangalore, sanjaynagar', communication: false, permanent_zip: '560095', communication_zip: '560095'}
   end
-  let(:valid_attributes) { { member_id: 4, permanent: true, communication: false, permanent_zip: 'bangalore, sanjaynagar', communication_zip: 'Bangalore' } }
-  let(:invalid_attributes) { { member_id: nil, permanent: nil, communication: nil, permanent_zip: '', communication_zip: '' } }
+  let(:valid_attributes) { {member_id: member.id, permanent: 'bangalore, sanjaynagar', communication: false, permanent_zip: '560095', communication_zip: '560095'} }
+  let(:invalid_attributes) { {member_id: nil, permanent: nil, communication: nil, permanent_zip: '', communication_zip: ''} }
 
   before do 
     admin = Admin.create!(name:'test', mobile:'123', password:'123')
@@ -93,9 +95,9 @@ end
         expect(response).to have_http_status(:created)
         expect(response.content_type.split(';').first).to eq("application/json")
         json_response = JSON.parse(response.body)
-        expect(json_response['member_id']).to eq(4)
-        expect(json_response['permanent']).to be true
-        expect(json_response['permanent_zip']).to eq('bangalore, sanjaynagar')
+        expect(json_response['member_id']).to eq(member.id)
+        expect(json_response['permanent']).to eq('bangalore, sanjaynagar')
+        expect(json_response['permanent_zip']).to eq('560095')
       end
     end
 

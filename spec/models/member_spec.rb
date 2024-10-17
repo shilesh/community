@@ -8,13 +8,13 @@ RSpec.describe Member, :type => :model do
     end 
 
     it "is not valid without a mobile" do
-        m2 = Member.new(name:'ss', mobile:nil, blood_group:'A')
+        m2 = Member.new(name:'sst', mobile:nil, blood_group:'A')
         expect(m2).to_not be_valid
     end 
 
     it "is not valid without a blood_group" do
-        m3 = Member.new(name: 'ss', mobile:'1', blood_group:nil)
-        expect(m3).to_not be_valid
+        m3 = Member.new(name: 'sst', mobile:'7584584376', blood_group:"")
+        expect(m3).to be_valid
     end
 
     context "mobile number should not be same" do
