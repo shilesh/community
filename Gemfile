@@ -29,12 +29,9 @@ gem 'simplecov'
 
 gem 'roo'
 
-
-group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
-  gem "pry"
-end
+gem 'pronto'
+gem 'pronto-rubocop', require: false
+gem 'pronto-flay', require: false
 
 group :test do
   gem "rspec-core"
@@ -43,5 +40,9 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+    # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # Debugging can be removed.
+  gem "debug", platforms: %i[ mri windows ]
+  gem "pry"
 end
 

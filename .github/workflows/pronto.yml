@@ -1,0 +1,41 @@
+name: Pronto
+on:
+  pull_request:
+    branches:
+      - '**'  # Match all branches
+
+jobs:
+  pronto:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history to ensure branches are available
+
+      # Step 2: Set up Ruby environment
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'  # Specify your Ruby version here
+          bundler-cache: true    # Cache gems automatically
+      
+      # Step 3: Fetch all branches (if needed)
+      - name: Fetch all branches
+        run: |
+          git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
+
+      # Step 4: Install gems
+      - name: Install Gems
+        run: |
+          bundle install --jobs 4 --retry 3
+
+      # Step 5: Run Pronto
+      - name: Run Pronto
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.MY_GITHUB_PAT }}
+        run: |
+          bundle exec pronto run -c origin/${{ github.base_ref }}

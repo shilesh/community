@@ -1,0 +1,4 @@
+all:
+  exclude:
+    - 'vendor/**' # Exclude the vendor directory
+base: main
